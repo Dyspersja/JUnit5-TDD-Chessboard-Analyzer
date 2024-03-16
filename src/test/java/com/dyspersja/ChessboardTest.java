@@ -50,4 +50,18 @@ class ChessboardTest {
                 new Chessboard(width, height));
     }
 
+    @Test
+    void shouldAssignWidthAndHeightWhenValidSize() {
+        // Given
+        int width = 8;
+        int height = 10;
+
+        // When
+        Chessboard chessboard = new Chessboard(width, height);
+
+        // Then
+        assertEquals(width, chessboard.getWidth());
+        assertEquals(height, chessboard.getHeight());
+    }
+
 }
