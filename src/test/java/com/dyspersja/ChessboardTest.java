@@ -10,12 +10,12 @@ class ChessboardTest {
 
     @ParameterizedTest
     @CsvSource({
-            "-2, 8",
-            "8, -3",
-            "2, 8",
-            "8, 5",
-            "75, 8",
-            "8, 45"
+            "-2, 8",    // negative width
+            "8, -3",    // negative height
+            "2, 8",     // too small width
+            "8, 5",     // too small height
+            "75, 8",    // too big width
+            "8, 45"     // too big height
     })
     void shouldThrowExceptionWhenBoardsSizeIsInvalid(int width, int height) {
         // Given ...
