@@ -1,4 +1,4 @@
-package com.dyspersja;
+package com.dyspersja.pieces;
 
 import org.junit.jupiter.api.Test;
 
