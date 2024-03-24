@@ -45,9 +45,7 @@ public class KnightTest {
 
         int xPosition = 2;
         int yPosition = 3;
-        chessboard.placeKnight(xPosition,yPosition);
-
-        ChessPiece knight = chessboard.getTile(xPosition,yPosition).getPiece();
+        ChessPiece knight = new Knight(xPosition, yPosition);
         Tile[][] board = chessboard.getBoard();
 
         // When
