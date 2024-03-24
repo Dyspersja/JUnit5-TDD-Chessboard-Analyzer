@@ -43,7 +43,7 @@ public class KnightTest {
         int height = 8;
         Chessboard chessboard = new Chessboard(width, height);
 
-        int xPosition = 2;
+        int xPosition = 5;
         int yPosition = 3;
         ChessPiece knight = new Knight(xPosition, yPosition);
         Tile[][] board = chessboard.getBoard();
@@ -52,18 +52,14 @@ public class KnightTest {
         knight.calculateAttacks(board);
 
         // Then
-        assertEquals(1, board[0][2].getAttackedBy());
-        assertEquals(1, board[0][4].getAttackedBy());
-        assertEquals(1, board[1][1].getAttackedBy());
-        assertEquals(1, board[3][1].getAttackedBy());
-        assertEquals(1, board[1][5].getAttackedBy());
-        assertEquals(1, board[3][5].getAttackedBy());
-        assertEquals(1, board[4][2].getAttackedBy());
-        assertEquals(1, board[4][4].getAttackedBy());
+        assertEquals(1, board[3][2].getAttackedBy());
+        assertEquals(1, board[3][4].getAttackedBy());
+        assertEquals(1, board[4][1].getAttackedBy());
+        assertEquals(1, board[4][5].getAttackedBy());
 
         assertEquals(0, board[0][0].getAttackedBy());
-        assertEquals(0, board[1][2].getAttackedBy());
-        assertEquals(0, board[3][4].getAttackedBy());
+        assertEquals(0, board[4][2].getAttackedBy());
+        assertEquals(0, board[2][4].getAttackedBy());
         assertEquals(0, board[2][1].getAttackedBy());
 
         assertEquals(0, board[xPosition][yPosition].getAttackedBy());

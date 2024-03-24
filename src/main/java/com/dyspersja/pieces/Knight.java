@@ -15,8 +15,8 @@ public class Knight extends ChessPiece {
 
     @Override
     public void calculateAttacks(Tile[][] board) {
-        int boardWidth = board[0].length;
-        int boardHeight = board.length;
+        int boardWidth = board.length;
+        int boardHeight = board[0].length;
 
         if(!isValidPosition(boardWidth, boardHeight, x, y))
             throw new IllegalStateException("Knight is not placed inside the board");
