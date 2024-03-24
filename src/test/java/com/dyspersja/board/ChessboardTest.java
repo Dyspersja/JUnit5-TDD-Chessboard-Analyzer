@@ -125,6 +125,25 @@ class ChessboardTest {
     }
 
     @Test
+    void shouldThrowExceptionWhenPlaceKnightOnOccupiedTile() {
+        // Given
+        int width = 16;
+        int height = 23;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int xPosition = 10;
+        int yPosition = 13;
+        Tile tile = chessboard.getTile(xPosition , yPosition);
+        tile.setPiece(new Knight(xPosition, yPosition));
+
+        // When
+        assertThatThrownBy(() -> chessboard.placeKnight(xPosition, yPosition))
+                // Then
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Tile is already occupied");
+    }
+
+    @Test
     void shouldCalculateAttackedTilesWhenPlacedMultipleKnightsOnTheBoard() {
         // Given
         int width = 6;
