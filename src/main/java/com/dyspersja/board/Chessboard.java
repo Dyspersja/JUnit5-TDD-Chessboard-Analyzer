@@ -46,7 +46,20 @@ public class Chessboard {
             throw new IllegalStateException("Tile is already occupied");
 
         board[x][y].setPiece(knight);
-        knight.calculateAttacks(board);
+    }
+
+    public void removePiece(int x, int y) {
+        if(x < 0 || x >= width || y < 0 || y >= height)
+            throw new IllegalArgumentException("Given position is outside of the board");
+
+        board[x][y].setPiece(null);
+    }
+
+    public void calculateBoard() {
+        for (int column = 0; column < width; column++)
+            for (int row = 0; row < height; row++)
+                if (board[column][row].isOccupied())
+                    board[column][row].getPiece().calculateAttacks(board);
     }
 
     public Tile getTile(int x, int y) {

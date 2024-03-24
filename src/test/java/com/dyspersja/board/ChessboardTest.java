@@ -159,10 +159,12 @@ class ChessboardTest {
         int thirdKnightsXPosition = 3;
         int thirdKnightsYPosition = 3;
 
-        // When
         chessboard.placeKnight(firstKnightsXPosition,firstKnightsYPosition);
         chessboard.placeKnight(secondKnightsXPosition,secondKnightsYPosition);
         chessboard.placeKnight(thirdKnightsXPosition,thirdKnightsYPosition);
+
+        // When
+        chessboard.calculateBoard();
 
         // Then
         Tile[][] board = chessboard.getBoard();
@@ -174,4 +176,39 @@ class ChessboardTest {
         assertEquals(0 ,board[4][3].getAttackedBy());
     }
 
+    @Test
+    void shouldRemovePieceFromTheBoard() {
+        // Given
+        int width = 16;
+        int height = 23;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int xPosition = 8;
+        int yPosition = 13;
+        chessboard.placeKnight(xPosition, yPosition);
+
+        // When
+        chessboard.removePiece(xPosition, yPosition);
+
+        // Then
+        ChessPiece knight = chessboard.getTile(xPosition, yPosition).getPiece();
+        assertNull(knight);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenRemovingPieceOutsideOfTheBoard() {
+        // Given
+        int width = 16;
+        int height = 23;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int xPosition = 16;
+        int yPosition = 13;
+
+        // When
+        assertThatThrownBy(() -> chessboard.removePiece(xPosition, yPosition))
+                // Then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Given position is outside of the board");
+    }
 }
