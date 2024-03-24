@@ -27,11 +27,11 @@ public class Chessboard {
 
     private Tile[][] initializeBoard(int width, int height){
         Tile[][] board = new Tile[width][height];
-        for (int column = 0; column < width; column++) {
-            for (int row = 0; row < height; row++) {
+
+        for (int column = 0; column < width; column++)
+            for (int row = 0; row < height; row++)
                 board[column][row] = new Tile();
-            }
-        }
+
         return board;
     }
 
