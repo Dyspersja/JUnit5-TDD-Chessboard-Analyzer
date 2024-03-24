@@ -14,4 +14,12 @@ public class Tile {
     public void incrementAttackedBy() {
         attackedBy++;
     }
+
+    @Override
+    public String toString() {
+        if (piece != null)
+            return piece.toString();
+
+        return String.valueOf(attackedBy);
+    }
 }
