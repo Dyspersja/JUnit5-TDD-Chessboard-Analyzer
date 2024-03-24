@@ -18,4 +18,20 @@ public class TileTest {
         assertEquals(0, tile.getAttackedBy());
         assertNull(tile.getPiece());
     }
+
+    @Test
+    void shouldIncrementAttackedByValue() {
+        // Given
+        int initialAttackedBy = 2;
+
+        Tile tile = new Tile();
+        tile.setAttackedBy(initialAttackedBy);
+
+        // When
+        tile.incrementAttackedBy();
+
+        // Then
+        assertEquals(3, tile.getAttackedBy());
+    }
+
 }
