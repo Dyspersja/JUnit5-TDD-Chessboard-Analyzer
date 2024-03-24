@@ -42,7 +42,8 @@ public class Chessboard {
         if(!knight.isValidPosition(width, height, x, y))
             throw new IllegalArgumentException("Cannot place knight outside of the board");
 
-        this.board[x][y].setPiece(knight);
+        board[x][y].setPiece(knight);
+        knight.calculateAttacks(board);
     }
 
     public Tile getTile(int x, int y) {
