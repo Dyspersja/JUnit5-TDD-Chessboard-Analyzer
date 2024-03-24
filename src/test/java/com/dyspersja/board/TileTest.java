@@ -1,5 +1,6 @@
 package com.dyspersja.board;
 
+import com.dyspersja.pieces.Knight;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,6 +33,35 @@ public class TileTest {
 
         // Then
         assertEquals(3, tile.getAttackedBy());
+    }
+
+    @Test
+    void shouldReturnKnightIfKnightStandsOnATile() {
+        // Given
+        Tile tile = new Tile();
+        tile.setPiece(new Knight(0,0));
+
+        // When
+        String result = tile.toString();
+
+        // Then
+        assertEquals("\u265E", result);
+        assertEquals("♞", result);
+    }
+
+    @Test
+    void shouldReturnAttackedByValueIfNothingStandsOnATile() {
+        // Given
+        int initialAttackedBy = 2;
+
+        Tile tile = new Tile();
+        tile.setAttackedBy(initialAttackedBy);
+
+        // When
+        String result = tile.toString();
+
+        // Then
+        assertEquals("2", result);
     }
 
 }

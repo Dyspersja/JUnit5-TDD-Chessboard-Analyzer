@@ -70,4 +70,17 @@ public class KnightTest {
 
         assertEquals(0, board[xPosition][yPosition].getAttackedBy());
     }
+
+    @Test
+    public void shouldReturnChessKnightSymbol() {
+        // Given
+        Knight knight = new Knight(0, 0);
+
+        // When
+        String result = knight.toString();
+
+        // Then
+        assertEquals("\u265E", result);
+        assertEquals("♞", result);
+    }
 }
