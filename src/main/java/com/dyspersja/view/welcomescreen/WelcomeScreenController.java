@@ -1,5 +1,7 @@
 package com.dyspersja.view.welcomescreen;
 
+import com.dyspersja.view.errorscreen.ErrorScreenProvider;
+import com.dyspersja.view.gamescreen.GameScreenController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +35,24 @@ public class WelcomeScreenController {
         if (!validateUserInput()) {
             displayIncorrectInputWindow();
             return;
+        }
+
+        try {
+            // load game board scene from FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GameScreen.fxml"));
+            Stage stage = (Stage) startButton.getScene().getWindow();
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // pass user input to gameScreenController
+            GameScreenController gameScreenController = fxmlLoader.getController();
+            gameScreenController.initializeGameScreenController(
+                    Integer.parseInt(heightTextField.getText()),
+                    Integer.parseInt(widthTextField.getText())
+            );
+
+            stage.setScene(scene);
+        } catch (IllegalStateException | IOException e) {
+            ErrorScreenProvider.displayErrorWindow(e);
         }
     }
 

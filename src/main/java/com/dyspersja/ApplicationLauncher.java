@@ -15,7 +15,7 @@ public class ApplicationLauncher extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/WelcomeScreen.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Minesweeper");
+            stage.setTitle("Chessboard Analyzer");
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
