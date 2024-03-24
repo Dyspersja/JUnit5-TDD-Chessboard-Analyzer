@@ -1,9 +1,13 @@
 package com.dyspersja.board;
 
+import com.dyspersja.pieces.ChessPiece;
+import com.dyspersja.pieces.Knight;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChessboardTest {
@@ -78,6 +82,46 @@ class ChessboardTest {
         assertNotNull(chessboard.getTile(15,22));
         assertNotNull(chessboard.getTile(6,13));
         assertNotNull(chessboard.getTile(4,22));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-1, -3",   // negative both
+            "-6, 8",    // negative x
+            "10, -6",   // negative y
+            "16, 23",   // too high both
+            "20, 14",   // too high x
+            "2, 30",    // too high y
+    })
+    void shouldThrowExceptionWhenPlaceKnightOutsideOfTheBoard(int xPosition, int yPosition) {
+        // Given
+        int width = 16;
+        int height = 23;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        // When
+        assertThatThrownBy(() -> chessboard.placeKnight(xPosition,yPosition))
+                // Then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Cannot place knight outside of the board");
+    }
+
+    @Test
+    void shouldPlaceKnightOnTheBoardWhenCorrectPosition() {
+        // Given
+        int width = 16;
+        int height = 23;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int xPosition = 10;
+        int yPosition = 13;
+
+        // When
+        chessboard.placeKnight(xPosition,yPosition);
+
+        // Then
+        ChessPiece piece = chessboard.getTile(xPosition,yPosition).getPiece();
+        assertThat(piece).isExactlyInstanceOf(Knight.class);
     }
 
 }
