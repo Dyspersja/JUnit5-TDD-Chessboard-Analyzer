@@ -1,5 +1,6 @@
 package com.dyspersja.pieces;
 
+import com.dyspersja.board.Chessboard;
 import com.dyspersja.board.Tile;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,40 @@ public class KnightTest {
                 // Then
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Knight is not placed inside the board");
+    }
+
+    @Test
+    void shouldUpdateAttackedByValuesForKnight() {
+        // Given
+        int width = 6;
+        int height = 8;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int xPosition = 2;
+        int yPosition = 3;
+        chessboard.placeKnight(xPosition,yPosition);
+
+        ChessPiece knight = chessboard.getTile(xPosition,yPosition).getPiece();
+        Tile[][] board = chessboard.getBoard();
+
+        // When
+        knight.calculateAttacks(board);
+
+        // Then
+        assertEquals(1, board[0][2].getAttackedBy());
+        assertEquals(1, board[0][4].getAttackedBy());
+        assertEquals(1, board[1][1].getAttackedBy());
+        assertEquals(1, board[3][1].getAttackedBy());
+        assertEquals(1, board[1][5].getAttackedBy());
+        assertEquals(1, board[3][5].getAttackedBy());
+        assertEquals(1, board[4][2].getAttackedBy());
+        assertEquals(1, board[4][4].getAttackedBy());
+
+        assertEquals(0, board[0][0].getAttackedBy());
+        assertEquals(0, board[1][2].getAttackedBy());
+        assertEquals(0, board[3][4].getAttackedBy());
+        assertEquals(0, board[2][1].getAttackedBy());
+
+        assertEquals(0, board[xPosition][yPosition].getAttackedBy());
     }
 }
