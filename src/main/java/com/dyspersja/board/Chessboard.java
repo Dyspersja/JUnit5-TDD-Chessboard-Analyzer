@@ -1,5 +1,6 @@
 package com.dyspersja.board;
 
+import com.dyspersja.pieces.Knight;
 import lombok.Getter;
 
 @Getter
@@ -35,8 +36,16 @@ public class Chessboard {
         return board;
     }
 
+    public void placeKnight(int x, int y) {
+        Knight knight = new Knight(x,y);
+
+        if(!knight.isValidPosition(width, height, x, y))
+            throw new IllegalArgumentException("Cannot place knight outside of the board");
+
+        this.board[x][y].setPiece(knight);
+    }
+
     public Tile getTile(int x, int y) {
         return board[x][y];
     }
-
 }
