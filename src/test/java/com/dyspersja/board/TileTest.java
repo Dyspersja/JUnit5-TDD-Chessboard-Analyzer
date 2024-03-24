@@ -3,8 +3,7 @@ package com.dyspersja.board;
 import com.dyspersja.pieces.Knight;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TileTest {
 
@@ -62,6 +61,31 @@ public class TileTest {
 
         // Then
         assertEquals("2", result);
+    }
+
+    @Test
+    void shouldReturnTrueWhenTileIsOccupied() {
+        // Given
+        Tile tile = new Tile();
+        tile.setPiece(new Knight(0,0));
+
+        // When
+        boolean result = tile.isOccupied();
+
+        // Then
+        assertTrue(result);
+    }
+
+    @Test
+    void shouldReturnFalseWhenTileIsNotOccupied() {
+        // Given
+        Tile tile = new Tile();
+
+        // When
+        boolean result = tile.isOccupied();
+
+        // Then
+        assertFalse(result);
     }
 
 }

@@ -15,6 +15,10 @@ public class Tile {
         attackedBy++;
     }
 
+    public boolean isOccupied() {
+        return piece != null;
+    }
+
     @Override
     public String toString() {
         if (piece != null)
