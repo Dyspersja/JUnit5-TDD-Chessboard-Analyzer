@@ -12,4 +12,8 @@ public abstract class ChessPiece {
     protected int y;
 
     public abstract void calculateAttacks(Tile[][] board);
+
+    protected boolean isValidPosition(int boardWidth, int bordHeight, int x, int y) {
+        return x >= 0 && x < boardWidth && y >= 0 && y < bordHeight;
+    }
 }
