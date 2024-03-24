@@ -10,7 +10,7 @@ public class Knight extends ChessPiece {
     };
 
     public Knight(int x, int y) {
-        super(x, y);
+        super(x, y, "\u265E");
     }
 
     @Override
@@ -29,10 +29,5 @@ public class Knight extends ChessPiece {
                 board[newX][newY].incrementAttackedBy();
             }
         }
-    }
-
-    @Override
-    public String toString() {
-        return "\u265E";
     }
 }
