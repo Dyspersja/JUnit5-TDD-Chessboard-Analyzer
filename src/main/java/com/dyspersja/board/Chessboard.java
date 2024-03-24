@@ -56,10 +56,18 @@ public class Chessboard {
     }
 
     public void calculateBoard() {
+        clearBoard();
+
         for (int column = 0; column < width; column++)
             for (int row = 0; row < height; row++)
                 if (board[column][row].isOccupied())
                     board[column][row].getPiece().calculateAttacks(board);
+    }
+
+    public void clearBoard() {
+        for (int column = 0; column < width; column++)
+            for (int row = 0; row < height; row++)
+                board[column][row].setAttackedBy(0);
     }
 
     public Tile getTile(int x, int y) {

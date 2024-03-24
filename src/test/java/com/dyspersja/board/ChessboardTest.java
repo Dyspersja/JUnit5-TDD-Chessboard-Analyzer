@@ -211,4 +211,39 @@ class ChessboardTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Given position is outside of the board");
     }
+
+    @Test
+    void shouldUpdateOnlyNewlyAddedPiecesAttacksWhenCalculatingBoard() {
+        // Given
+        int width = 6;
+        int height = 8;
+        Chessboard chessboard = new Chessboard(width, height);
+
+        int firstKnightsXPosition = 2;
+        int firstKnightsYPosition = 3;
+
+        int secondKnightsXPosition = 0;
+        int secondKnightsYPosition = 0;
+
+        int thirdKnightsXPosition = 3;
+        int thirdKnightsYPosition = 3;
+
+        // When
+        chessboard.placeKnight(firstKnightsXPosition,firstKnightsYPosition);
+        chessboard.calculateBoard();
+        chessboard.placeKnight(secondKnightsXPosition,secondKnightsYPosition);
+        chessboard.calculateBoard();
+        chessboard.placeKnight(thirdKnightsXPosition,thirdKnightsYPosition);
+        chessboard.calculateBoard();
+
+        // Then
+        Tile[][] board = chessboard.getBoard();
+        assertEquals(0 ,board[0][0].getAttackedBy());
+        assertEquals(0 ,board[2][2].getAttackedBy());
+        assertEquals(2 ,board[1][2].getAttackedBy());
+        assertEquals(2 ,board[2][1].getAttackedBy());
+        assertEquals(1 ,board[4][5].getAttackedBy());
+        assertEquals(0 ,board[4][3].getAttackedBy());
+    }
+
 }
