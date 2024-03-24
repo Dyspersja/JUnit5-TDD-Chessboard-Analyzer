@@ -16,11 +16,11 @@ public class GameScreenController {
         initializer.addColumnConstraints(width);
         initializer.applyGridPaneStyles();
 
-        //initializeGameLogic(height, width);
+        initializeGameLogic(height, width);
     }
 
-//    private void initializeGameLogic(int height, int width) {
-//        var logic = new GameScreenLogic(this, height, width);
-//        logic.initializeTileGrid(minefieldGridPane);
-//    }
+    private void initializeGameLogic(int height, int width) {
+        var logic = new GameScreenLogic(this, height, width);
+        logic.initializeTileGrid(minefieldGridPane);
+    }
 }
