@@ -64,4 +64,20 @@ class ChessboardTest {
         assertEquals(height, chessboard.getHeight());
     }
 
+    @Test
+    void shouldCreateBoardWithNonNullTiles() {
+        // Given
+        int width = 16;
+        int height = 23;
+
+        // When
+        Chessboard chessboard = new Chessboard(width, height);
+
+        // Then
+        assertNotNull(chessboard.getTile(0,0));
+        assertNotNull(chessboard.getTile(15,22));
+        assertNotNull(chessboard.getTile(6,13));
+        assertNotNull(chessboard.getTile(4,22));
+    }
+
 }
