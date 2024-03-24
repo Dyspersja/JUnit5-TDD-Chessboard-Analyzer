@@ -16,6 +16,6 @@ public class TileTest {
 
         // Then
         assertEquals(0, tile.getAttackedBy());
-        assertNull(tile.getChessPiece());
+        assertNull(tile.getPiece());
     }
 }
