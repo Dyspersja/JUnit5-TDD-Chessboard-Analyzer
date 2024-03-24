@@ -10,7 +10,7 @@ public class Knight extends ChessPiece {
 
     @Override
     public void calculateAttacks(Tile[][] board) {
-        if(x >= board.length || y >= board[0].length)
+        if(!isValidPosition(board[0].length, board.length, x, y))
             throw new IllegalStateException("Knight is not placed inside the board");
     }
 }
